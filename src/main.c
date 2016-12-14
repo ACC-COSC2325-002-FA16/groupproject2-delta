@@ -26,7 +26,6 @@
 #define OUTPUT_CONFIG       (DDRB |= (1<<RED_PIN) | (1<<GREEN_PIN) | (1<<BUZZ_PIN))
 #define CPU_PRESCALE(n)     (CLKPR = 0x80, CLKPR = (n))
 int buzzerState = 1;
-
 /************************************************************************/
 /*                     Device function definitions                      */
 /************************************************************************/
@@ -43,7 +42,8 @@ void toggleBuzz(void) {
 }
 void buzzEnable(void) {
     char ticks = 0;
-    while(1) {
+    int blastCount = 0;
+    while(blastCount <= 100) {
         while((TIFR0 & 0x01) == 0) {} 
         TIFR0 = 1;
         ticks++;
@@ -51,6 +51,7 @@ void buzzEnable(void) {
             ticks = 0;
             toggleBuzz();
         }
+        blastCount++;
     }
 }
 

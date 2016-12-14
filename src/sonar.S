@@ -29,7 +29,7 @@ waiting:
         rjmp            waiting                 ; otherwise keep waiting for the response
         clr		r25			; zero out high bits of return register
         mov		r24, r21                ; set lower bits to the value of counter
-        call            hundredCMDelay
+        call            tenMicroDelay
         ret					; return to calling function
 
 ;-----------------------------------------------;
