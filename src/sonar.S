@@ -25,10 +25,11 @@ receive:
 waiting:
         call            hundredCMDelay          ; wait long enough for the sound to travel 100 cm (each way)
         inc             r21                     ; increment counter
-        sbis            _PIND, ECHO_PIN		; break out of loop if response received
+        sbic            _PIND, ECHO_PIN		; break out of loop if response received
         rjmp            waiting                 ; otherwise keep waiting for the response
         clr		r25			; zero out high bits of return register
         mov		r24, r21                ; set lower bits to the value of counter
+        call            hundredCMDelay
         ret					; return to calling function
 
 ;-----------------------------------------------;
