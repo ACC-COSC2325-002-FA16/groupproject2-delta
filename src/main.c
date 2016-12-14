@@ -17,7 +17,7 @@
 #define GREEN_ON            (PORTB |= (0x10))
 #define GREEN_OFF           (PORTB &= ~(1<<GREEN_PIN))
 #define YELLOW_ON           (PORTB |= (1<<RED_PIN) | (1<<GREEN_PIN))
-#define YELLOW_OFF          (PORTB &= (0x00))
+#define YELLOW_OFF          (PORTB &= (0x01))
 
 #define BUZZ_ON             (PORTB |= (1<<BUZZ_PIN))
 #define BUZZ_OFF            (PORTB &= ~(1<<BUZZ_PIN))
@@ -47,7 +47,7 @@ void buzzEnable(void) {
         while((TIFR0 & 0x01) == 0) {} 
         TIFR0 = 1;
         ticks++;
-        if (ticks == 60) {
+        if (ticks == 20) {
             ticks = 0;
             toggleBuzz();
         }
@@ -62,10 +62,10 @@ void LEDColor(int distance) {
     GREEN_OFF;
 
 
-    if (distance >= 3) {
+    if (distance >= 4) {
         RED_ON;
     }
-    else if (distance >= 2) {
+    else if (distance >= 3) {
         YELLOW_ON;
     }
 	else {
