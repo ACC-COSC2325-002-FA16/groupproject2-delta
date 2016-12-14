@@ -22,7 +22,6 @@ send:
         cbi             _PORTD,	TRIG_PIN        ; set the output to LOW after pings are sent
 receive:
         clr             r21                     ; clear counter value
-        cbi             _PIND, ECHO_PIN
 waiting:
         call            hundredCMDelay          ; wait long enough for the sound to travel 100 cm (each way)
         inc             r21                     ; increment counter
