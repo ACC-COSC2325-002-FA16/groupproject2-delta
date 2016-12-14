@@ -62,7 +62,7 @@ void LEDColor(int distance) {
     if (distance >= 4) {
         RED_ON;
     }
-    else if (distance >= 3) {
+    else if (distance >= 2) {
         YELLOW_ON;
     }
 	else {
