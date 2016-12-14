@@ -12,9 +12,9 @@
 #define BUZZ_PIN            1
 
 //--- PIN Controls -------------------------------------------------------
-#define RED_ON              (PORTB |= (0x0F))
+#define RED_ON              (PORTB |= (1<<RED_PIN))
 #define RED_OFF             (PORTB &= ~(1<<RED_PIN))
-#define GREEN_ON            (PORTB |= (0x10))
+#define GREEN_ON            (PORTB |= (1<<GREEN_PIN))
 #define GREEN_OFF           (PORTB &= ~(1<<GREEN_PIN))
 #define YELLOW_ON           (PORTB |= (1<<RED_PIN) | (1<<GREEN_PIN))
 #define YELLOW_OFF          (PORTB &= (0x01))
@@ -57,10 +57,7 @@ void buzzEnable(void) {
 
 //--- LED ----------------------------------------------------------------
 void LEDColor(int distance) {
-    RED_OFF;
     YELLOW_OFF;
-    GREEN_OFF;
-
 
     if (distance >= 4) {
         RED_ON;
